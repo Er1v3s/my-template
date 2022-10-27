@@ -19,7 +19,13 @@ module.exports = {
         rules: [
             {
                 test: /\.s[ac]ss$/i,
-                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                exclude: /node_modules/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    'postcss-loader',
+                    "sass-loader"
+                ],
             },
             {
                 test: /\.(png|jp(e*)g|svg)$/,
@@ -63,6 +69,8 @@ module.exports = {
     },
 
     plugins: [
+        require('autoprefixer'),
+
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: "Nowa aplikacja",
